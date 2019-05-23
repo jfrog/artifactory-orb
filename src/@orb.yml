@@ -1,0 +1,4 @@
+version: 2.1
+
+description: |
+  Install, configure, and use the JFrog Artifactory CLI
