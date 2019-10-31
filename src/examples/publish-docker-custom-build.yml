@@ -11,7 +11,7 @@ usage:
   version: 2.1
 
   orbs:
-    artifactory: circleci/artifactory@1.0.0
+    artifactory: jfrog/artifactory-orb@1.0.1
 
   workflows:
     custom-docker-example:
