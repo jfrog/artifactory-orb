@@ -1,0 +1,55 @@
+description: >
+  Promote an image from one JFrog Docker registry to another
+
+parameters:
+  source_image:
+    type: string
+    description: >
+      The Docker image name to promote
+
+  source-repository:
+    type: string
+    description: >
+      Source repository in Artifactory
+
+  source-tag:
+    type: string
+    default: ""
+    description: >
+      The tag name in the source repository to promote
+
+  target-image:
+    type: string
+    default: ""
+    description: >
+      Docker target image name
+
+  target-repository:
+    type: string
+    description: >
+      Target repository in Artifactory
+
+  target-tag:
+    type: string
+    default: ""
+    description: >
+      The target tag to assign the image after promotion
+
+  copy:
+    type: boolean
+    default: false
+    description: >
+      If set true, the Docker image is copied to the target repository, otherwise it is moved.
+
+steps:
+  - run:
+      name: Docker push to JFrog registry
+      command: |
+        jfrog rt dpr \
+          <<parameters.source_image>> \
+          <<parameters.source-repository>> \
+          <<parameters.target-repository>> \
+          <<#parameters.copy>>--copy<</parameters.copy>> \
+          <<#parameters.source-tag>>--source-tag="<<parameters.source-tag>>"<</parameters.source-tag>> \
+          <<#parameters.target-image>>--target-docker-image="<<parameters.target-image>>"<</parameters.target-image>> \
+          <<#parameters.target-tag>>--target-tag="<<parameters.target-tag>>"<</parameters.target-tag>>
