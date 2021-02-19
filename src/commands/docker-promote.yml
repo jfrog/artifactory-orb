@@ -43,7 +43,7 @@ parameters:
 
 steps:
   - run:
-      name: Docker push to JFrog registry
+      name: Promote Docker image in JFrog registry
       command: |
         jfrog rt dpr \
           <<parameters.source_image>> \
