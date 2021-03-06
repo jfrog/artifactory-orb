@@ -1,0 +1,26 @@
+description: >
+  Log into an JFrog npm registry. Authentication details will be written into a .npmrc file.
+
+parameters:
+  repository:
+    type: string
+    default: npm
+    description: >
+      npm repository name in JFrog Artifactory
+
+  scope:
+    type: string
+    default: ''
+    description: >
+      An npm scope for which this registry will be used (without @). If no scope is provided, this registry will be used for all packages.
+
+steps:
+  - run:
+      name: Log into JFrog npm registry
+      command: |
+        jfrog rt curl \
+          '/api/npm/<<parameters.repository>>/auth<<#parameters.scope>>/<<parameters.scope>><</parameters.scope>>' \
+          --silent \
+          --show-error \
+          --fail \
+          >> .npmrc

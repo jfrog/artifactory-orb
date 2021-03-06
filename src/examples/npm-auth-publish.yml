@@ -1,0 +1,28 @@
+description: >
+  Use the `npm-auth` command to authenticate with a JFrog Artifactory repository and then publish a package for semver tags.
+
+usage:
+  version: 2.1
+
+  orbs:
+    artifactory: takescoop/artifactory@1.0.0
+
+jobs:
+  publish:
+    docker:
+      - image: circleci/node:14
+    steps:
+      - artifactory/configure
+      - artifactory/npm-auth
+      - run: npm publish
+
+  workflows:
+    publish:
+      jobs:
+        - publish:
+            context: publish
+            filters:
+              branches:
+                ignore: /.*/
+              tags:
+                only: /^v\d+\.\d+\.\d+$/
