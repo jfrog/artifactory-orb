@@ -2,7 +2,7 @@ description: >
   Promote an image from one JFrog Docker registry to another
 
 parameters:
-  source_image:
+  source-image:
     type: string
     description: >
       The Docker image name to promote
@@ -46,7 +46,7 @@ steps:
       name: Promote Docker image in JFrog registry
       command: |
         jfrog rt dpr \
-          <<parameters.source_image>> \
+          <<parameters.source-image>> \
           <<parameters.source-repository>> \
           <<parameters.target-repository>> \
           <<#parameters.copy>>--copy<</parameters.copy>> \
