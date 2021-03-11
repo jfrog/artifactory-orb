@@ -60,6 +60,13 @@ parameters:
     description: >
       If set true, the Docker image is copied to the target repository, otherwise it is moved.
 
+  dependency-steps:
+    type: steps
+    default: []
+    description: >
+      Include any additional steps to collect dependency information
+      before `jfrog rt dpr` is executed.
+
 executor: machine
 
 steps:
@@ -70,6 +77,8 @@ steps:
       artifactory-url: <<parameters.artifactory-url>>
       artifactory-user: <<parameters.artifactory-user>>
       artifactory-key: <<parameters.artifactory-key>>
+
+  - steps: << parameters.dependency-steps >>
 
   - docker-promote:
       source-image: <<parameters.source-image>>
