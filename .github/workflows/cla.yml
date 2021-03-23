@@ -1,7 +1,9 @@
 name: "CLA Assistant"
 on:
   pull_request_target:
-    types: [opened,synchronize]
+    types: [opened, synchronize]
+  pull_request_review_comment:
+    types: [created, edited]
 
 jobs:
   CLAssistant:
