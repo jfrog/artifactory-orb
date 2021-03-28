@@ -2,3 +2,7 @@ version: 2.1
 
 description: |
   Install, configure, and use the JFrog Artifactory CLI
+
+display:
+  home_url: https://jfrog.com/artifactory/
+  source_url: https://github.com/jfrog/artifactory-orb
