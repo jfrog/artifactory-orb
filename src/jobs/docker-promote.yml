@@ -1,0 +1,81 @@
+description: >
+  Configure the JFrog CLI and promote a Docker image.
+
+parameters:
+  artifactory-url:
+    type: env_var_name
+    default: ARTIFACTORY_URL
+    description: >
+      Name of environment variable storing the URL of your Artifactory
+      instance
+
+  artifactory-user:
+    type: env_var_name
+    default: ARTIFACTORY_USER
+    description: >
+      Name of environment variable storing your Artifactory username
+
+  artifactory-key:
+    type: env_var_name
+    default: ARTIFACTORY_API_KEY
+    description: >
+      Name of environment variable storing your Artifactory API key
+
+  source-image:
+    type: string
+    description: >
+      The Docker image name to promote
+
+  source-repository:
+    type: string
+    description: >
+      Source repository in Artifactory
+
+  source-tag:
+    type: string
+    default: ""
+    description: >
+      The tag name in the source repository to promote
+
+  target-image:
+    type: string
+    default: ""
+    description: >
+      Docker target image name
+
+  target-repository:
+    type: string
+    description: >
+      Target repository in Artifactory
+
+  target-tag:
+    type: string
+    default: ""
+    description: >
+      The target tag to assign the image after promotion
+
+  copy:
+    type: boolean
+    default: false
+    description: >
+      If set true, the Docker image is copied to the target repository, otherwise it is moved.
+
+executor: machine
+
+steps:
+  - checkout
+  - install
+
+  - configure:
+      artifactory-url: <<parameters.artifactory-url>>
+      artifactory-user: <<parameters.artifactory-user>>
+      artifactory-key: <<parameters.artifactory-key>>
+
+  - docker-promote:
+      source-image: <<parameters.source-image>>
+      source-repository: <<parameters.source-repository>>
+      source-tag: <<parameters.source-tag>>
+      target-image: <<parameters.target-image>>
+      target-repository: <<parameters.target-repository>>
+      target-tag: <<parameters.target-tag>>
+      copy: <<parameters.copy>>
