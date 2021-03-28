@@ -1,15 +1,26 @@
 description: Install the JFrog CLI
 
+parameters:
+  version:
+    type: string
+    description: >
+      The version from the command-line tool to be installed.
+
 steps:
   - run:
       name: Install JFrog CLI
       command: |
+        VERSION=<<parameters.version>>
         echo "Checking for existence of CLI"
         set +e
         jfrog -v
         if [ $? -gt 0 ]; then
-          echo "Not found, installing latest"
-          curl -fL https://getcli.jfrog.io | sh
+          echo "Not found, installing ${VERSION:-latest}"
+          if [ -n "${VERSION}" ]; then
+            curl -fL https://getcli.jfrog.io | sh -s "${VERSION}"
+          else
+            curl -fL https://getcli.jfrog.io | sh
+          fi
           chmod a+x jfrog && sudo mv jfrog /usr/local/bin
         else
           echo "CLI exists, skipping install"
