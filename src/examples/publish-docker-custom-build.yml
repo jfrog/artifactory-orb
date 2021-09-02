@@ -11,12 +11,12 @@ usage:
   version: 2.1
 
   orbs:
-    artifactory: circleci/artifactory@1.0.0
+    artifactory-orb: jfrog/artifactory-orb@1.0.1
 
   workflows:
     custom-docker-example:
       jobs:
-        - artifactory/docker-publish:
+        - artifactory-orb/docker-publish:
             name: Docker Publish Custom Build
             docker-registry: orbdemos-docker-local.jfrog.io
             repository: docker-local

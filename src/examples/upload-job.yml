@@ -5,12 +5,12 @@ usage:
   version: 2.1
 
   orbs:
-    artifactory: circleci/artifactory@1.0.0
+    artifactory-orb: jfrog/artifactory-orb@1.0.1
 
   workflows:
     publish:
       jobs:
-        - artifactory/upload:
+        - artifactory-orb/upload:
             name: Publish Maven Jar
             source: test/artifact.jar
             target: repo/path

@@ -6,7 +6,7 @@ usage:
   version: 2.1
 
   orbs:
-    artifactory: circleci/artifactory@1.0.0
+    artifactory-orb: jfrog/artifactory-orb@1.0.1
 
   jobs:
     build:
@@ -14,6 +14,6 @@ usage:
         - image: circleci/node:10
       steps:
         - checkout
-        - artifactory/install
-        - artifactory/configure
-        - artifactory/build-integration
+        - artifactory-orb/install
+        - artifactory-orb/configure
+        - artifactory-orb/build-integration
