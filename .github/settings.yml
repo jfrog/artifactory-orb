@@ -1,0 +1,8 @@
+_extends: .github
+repository:
+  name: artifactory-orb
+  description: CircleCI orb for interacting with JFrog Artifactory
+  topics: circleci, orb, artifactory, jfrog
+  homepage: https://circleci.com/developer/orbs/orb/takescoop/artifactory
+  allow_auto_merge: true
+  private: false
