@@ -2,5 +2,12 @@ description: >
   A machine executor that can run Docker commands:
   https://circleci.com/docs/2.0/executor-types/#using-machine
 
+parameters:
+  docker-layer-caching:
+    type: boolean
+    default: false
+    description: "Enable Docker Layer Caching"
+
 machine:
   image: ubuntu-2004:202111-02
+  docker_layer_caching: <<parameters.docker-layer-caching>>

@@ -76,7 +76,14 @@ parameters:
       Include any additional steps to collect dependency information
       before `jfrog rt bp` is executed.
 
-executor: machine
+  docker-layer-caching:
+    type: boolean
+    default: false
+    description: "Enable Docker Layer Caching"
+
+executor:
+  name: machine
+  docker-layer-caching: <<parameters.docker-layer-caching>>
 
 environment:
   RAWTAG: <<parameters.docker-tag>>
