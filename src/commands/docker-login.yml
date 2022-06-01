@@ -24,4 +24,4 @@ steps:
   - run:
       name: Log into JFrog Docker registry
       command: |
-        docker login -u $<<parameters.artifactory-user>> -p $<<parameters.artifactory-key>> <<parameters.docker-registry>>
+        echo $<<parameters.artifactory-key>> | docker login -u $<<parameters.artifactory-user>> --password-stdin <<parameters.docker-registry>>
