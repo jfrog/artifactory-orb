@@ -5,7 +5,7 @@ description: >
 parameters:
   docker-image:
     type: string
-    default: "circleci/openjdk:8"
+    default: "cimg/base:2022.08"
     description: >
       Docker image to use in this executor, defaults to circleci/openjdk:8
 
