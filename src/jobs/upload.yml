@@ -3,7 +3,7 @@ description: Upload artifacts to Artifactory
 parameters:
   docker:
     type: string
-    default: circleci/openjdk:8
+    default: cimg/base:2022.08
     description: Docker image to use for build
 
   build-steps:
